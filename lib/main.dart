@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(Petoshopo());
 //N leia essa msg
+//Eu falei para n ler essa msg
 class Petoshopo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

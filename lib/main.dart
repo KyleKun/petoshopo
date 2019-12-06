@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'api.dart';
 
 void main() => runApp(Petoshopo());
 //N leia essa msg
 //Eu falei para n ler essa msg
 //Sinto muito, eu li essa msg 
 class Petoshopo extends StatelessWidget {
+  String url;
+  var Data;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +19,16 @@ class Petoshopo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Coming soon...'),
+              FlatButton(
+                color: Colors.red,
+                onPressed : () async {
+                  url = 'http://10.0.2.2:5000/';
+                  Data = await Getdata(url);
+                },
+                child: Text(
+                  "Enviar SMS",
+                ),
+              )
             ],
           ),
         ),

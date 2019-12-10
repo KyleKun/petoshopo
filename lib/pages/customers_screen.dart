@@ -144,8 +144,10 @@ class _MyHomePageState extends State<ConsultCustomer>
                   onPressed: () async {
                     var myBox = Hive.box("dadosCustomers");
                     int len = myBox.length;
-                    await Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ConsultCustomer()));
+                    await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterCustomer()));
 
                     if (Hive.box("dadosCustomers").length != len) {
                       items.clear();

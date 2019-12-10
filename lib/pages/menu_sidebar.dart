@@ -178,9 +178,6 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                           },
                         ),
                         new Divider(color: Colors.black, height: 5.0),
-                        new SizedBox(
-                          height: 180.0,
-                        ),
                         new ListTile(
                             title: new Text(
                                 '@2019 Petoshopo,\n All Rights Reserved',

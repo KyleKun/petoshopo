@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:folding_cell/folding_cell.dart';
+import 'package:hive/hive.dart';
+import 'package:petoshopo/model/customer.dart';
+import 'package:petoshopo/pages/register_customer.dart';
 
 class Consultcustomer extends StatefulWidget {
   @override
@@ -10,12 +13,33 @@ class _MyHomePageState extends State<Consultcustomer>
     with SingleTickerProviderStateMixin {
   TextEditingController editingController = TextEditingController();
   TabController controller;
-  List<String> listItems = ["Johnny Depp","Al Pacino","Robert De Niro","Kevin Spacey","Denzel Washington","Russell Crowe","SBrad Pitt","Sylvester Stallone"];
+  List<String> listItems = List();
   var items = List<String>();
+
+  List<Customer> listCustomers = List();
+
+  void carregarLista(){
+
+    var myBox = Hive.box("dadosCustomers");
+    print(myBox.length);
+    if(myBox.length != 0){
+
+      for(int i = 0; i < myBox.length; i++){
+        Customer customer = myBox.getAt(i);
+        listCustomers.add(customer);
+        listItems.add(customer.name);
+      }
+
+    }
+
+    items.addAll(listItems);
+  }
 
   @override
   void initState() {
-    items.addAll(listItems);
+
+    carregarLista();
+
     super.initState();
     controller = new TabController(length: 4, vsync: this);
   }
@@ -73,7 +97,8 @@ class _MyHomePageState extends State<Consultcustomer>
                   (
                     itemCount: items.length, //count the value no in the list
                     itemBuilder: (BuildContext ctxt, int Index) {
-                      return _buildCell(context, Index,items[Index]);
+                      Customer customer = listCustomers[Index];
+                      return _buildCell(context, Index,items[Index], customer);
                     }
                 )
             )
@@ -115,19 +140,40 @@ class _MyHomePageState extends State<Consultcustomer>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 60.0),
-            Text('Customers list',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Customers list',
               style: TextStyle(
                   fontFamily: 'Quicksand',
                   color: Colors.white,
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold
               ),),
+              IconButton(
+                onPressed: () async {
+                  var myBox = Hive.box("dadosCustomers");
+                  int len = myBox.length;
+                  await Navigator.push(context, MaterialPageRoute(builder: (context) => Signin()));
+                  
+                  if(Hive.box("dadosCustomers").length != len){
+                    items.clear();
+                    listItems.clear();
+                    carregarLista();
+                    
+                  }
+
+                },
+                icon: Icon(Icons.add_box, color: Colors.white,),
+              )
+              ],
+            ),
           ],
         )
     );
   }
 
-  Widget _buildCell(BuildContext context, int index,String name,) { // same as previous video
+  Widget _buildCell(BuildContext context, int index, String name, Customer customer) { // same as previous video
     return Padding(
       padding: EdgeInsets.only(left: 12.0,top: 5.0, right: 12.0),
       child: Material(
@@ -171,7 +217,7 @@ class _MyHomePageState extends State<Consultcustomer>
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Telephone: ',
+                        'Phone number: ${customer.telephone}',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontFamily: 'Quicksand',
                             fontSize: 12.0,
@@ -180,7 +226,7 @@ class _MyHomePageState extends State<Consultcustomer>
                       ),
 
                           Text(
-                            'Pet name: ',
+                            'Pet name: ${customer.petName}',
                             textAlign: TextAlign.left,
                             style: TextStyle(fontFamily: 'Quicksand',
                                 fontSize: 12.0,
@@ -188,7 +234,7 @@ class _MyHomePageState extends State<Consultcustomer>
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            'Pet breed: ',
+                            'Pet breed: ${customer.petBreed}',
                             textAlign: TextAlign.left,
                             style: TextStyle(fontFamily: 'Quicksand',
                                 fontSize: 12.0,

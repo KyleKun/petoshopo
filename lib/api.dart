@@ -8,8 +8,8 @@ Future callCustomer(var customerData) async {
 
 Future sendSmsReminder(var customerData) async {
   http.get(Uri.parse('http://kylekun.pythonanywhere.com/sms')
-                     .replace(queryParameters: customerData)
-                     .toString());
+      .replace(queryParameters: customerData)
+      .toString());
 }
 
 Future askFeedback(var customerData) async {

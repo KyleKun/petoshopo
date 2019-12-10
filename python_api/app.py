@@ -1,3 +1,5 @@
+# THIS API IS DEPLOYED AT http://kylekun.pythonanywhere.com/
+
 from flask import Flask, request
 from totalvoice.cliente import Cliente
 
@@ -23,7 +25,7 @@ def sms_vaccination():
     msg = "Hello {}!\nDo not forget to bring {} to vaccination on {}.\nSee ya ;)".format(name, pet, date)
     response = client.sms.enviar(phone, msg)
     print(response)
-    return 'OK'
+    return 'REMINDER SMS SENT'
 
 
 @app.route('/feedback')
@@ -33,7 +35,7 @@ def sms_feedback():
     response = client.sms.enviar(phone, msg)
     print(date)
     print(response)
-    return 'OK'
+    return 'FEEDBACK SMS SENT'
 
 
 @app.route('/call')
@@ -43,7 +45,7 @@ def call_customer():
     response = client.tts.enviar(phone, msg, 1, False, 'en-Joanna')
     print(response)
     print(date)
-    return 'OK'
+    return 'CALLING'
 
 
 if __name__ == '__main__':

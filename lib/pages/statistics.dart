@@ -85,38 +85,38 @@ class Statistics extends StatelessWidget {
                   padding: EdgeInsets.all(30),
                   child: SingleChildScrollView(
                     child: Column(
-                    children: <Widget>[
-                      //SizedBox(height: 10,),
-                      FadeAnimation(
-                          1.4,
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(225, 95, 27, .3),
-                                      blurRadius: 20,
-                                      offset: Offset(0, 10))
-                                ]),
-                          )),
-                      //FadeAnimation(1.5, Text("This month", style: TextStyle(color: Colors.black, fontFamily: "Quicksand", fontSize: 22),)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
+                      children: <Widget>[
+                        //SizedBox(height: 10,),
+                        FadeAnimation(
+                            1.4,
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color.fromRGBO(225, 95, 27, .3),
+                                        blurRadius: 20,
+                                        offset: Offset(0, 10))
+                                  ]),
+                            )),
+                        //FadeAnimation(1.5, Text("This month", style: TextStyle(color: Colors.black, fontFamily: "Quicksand", fontSize: 22),)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
 //                        FadeAnimation(1.6, Text("9-10:", style: TextStyle(color: Colors.black, fontFamily: "Quicksand", fontSize: 18),)),
 //                        FadeAnimation(1.7, Text("44", style: TextStyle(color: Colors.black, fontFamily: "Quicksand", fontSize: 18),)),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          FadeAnimation(
-                            1.8,
-                            SfCartesianChart(
-                              primaryXAxis: CategoryAxis(),
-                              series: <LineSeries<EmployeeRating, String>>[
-                                LineSeries<EmployeeRating, String>(
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            FadeAnimation(
+                              1.8,
+                              SfCartesianChart(
+                                primaryXAxis: CategoryAxis(),
+                                series: <LineSeries<EmployeeRating, String>>[
+                                  LineSeries<EmployeeRating, String>(
                                     dataSource: <EmployeeRating>[
                                       EmployeeRating('John', 3),
                                       EmployeeRating('Peter', 3),
@@ -128,24 +128,25 @@ class Statistics extends StatelessWidget {
                                     yValueMapper: (EmployeeRating sales, _) =>
                                         sales.value,
                                     // Enable data label
-                                    ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(children: <Widget>[
-                        FadeAnimation(
-                            1.3,
-                            Text(
-                              "*Based on SMS Feedback.",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: "Quicksand"),
-                            )),
-                      ],)
-                    ],
-                  ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            FadeAnimation(
+                                1.3,
+                                Text(
+                                  "*Based on SMS Feedback.",
+                                  style: TextStyle(
+                                      fontSize: 12, fontFamily: "Quicksand"),
+                                )),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

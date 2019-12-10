@@ -26,7 +26,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
   static Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
     return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
   }
-  
+
   Color orangeColor = hexToColor('#FFB056');
   Color greenColor = hexToColor('#69DC9E');
   Color white = hexToColor('#FCFEFE');
@@ -55,12 +55,14 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
     screenWidth = size.width;
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        onTap: (index){
-          if(index == 0){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ConsultCustomer()));
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ConsultCustomer()));
           }
-          if(index == 2){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Statistics()));
+          if (index == 2) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Statistics()));
           }
         },
         index: 1,
@@ -69,10 +71,15 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
         items: <Widget>[
-           IconButton(
+          IconButton(
             icon: Icon(Icons.person),
             color: Colors.white,
-            onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) => ConsultCustomer()));},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => ConsultCustomer()));
+            },
           ),
           Icon(
             Icons.home,
@@ -81,7 +88,10 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
           IconButton(
             icon: Icon(Icons.insert_chart),
             color: Colors.white,
-            onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) => Statistics()));},
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => Statistics()));
+            },
           )
         ],
       ),
@@ -96,79 +106,94 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
   }
 
   Widget menu(context) {
-    return SlideTransition(
-        position: _slideAnimation,
-        child: ScaleTransition(
-            scale: _menuScaleAnimation,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 12.0, top: 15),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      width: 140,
-                      height: 125,
-                      margin: EdgeInsets.only(top: 40, left: 30),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              'https://i.ibb.co/3sQ0f6b/oie-oie-trim-image.png'),
-                          fit: BoxFit.fill,
+    return Container(
+        color: orangeColor,
+        child: SlideTransition(
+            position: _slideAnimation,
+            child: ScaleTransition(
+                scale: _menuScaleAnimation,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0, top: 15),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 140,
+                          height: 125,
+                          margin: EdgeInsets.only(top: 40, left: 30),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://i.ibb.co/3sQ0f6b/oie-oie-trim-image.png'),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ),
-                      ),
+                        new ListTile(
+                            contentPadding: EdgeInsets.only(left: 55),
+                            title: new Text('Petoshopo',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 19,
+                                  fontFamily: "Quicksand",
+                                )),
+                            onTap: () {}),
+                        SizedBox(height: 20),
+                        new ListTile(
+                            title: new Text('Register Customer',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 19,
+                                  fontFamily: "Quicksand",
+                                )),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          new RegisterCustomer()));
+                            }),
+                        new Divider(color: Colors.black, height: 5.0),
+                        new ListTile(
+                          title: new Text('About us',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 19,
+                                fontFamily: "Quicksand",
+                              )),
+                          onTap: () {
+                            showAboutDialog(
+                              context: context,
+                              applicationIcon: FlutterLogo(),
+                              applicationName: 'Petoshopo',
+                              applicationVersion: '1.0.0',
+                              applicationLegalese:
+                                  'Developed by Caio Pedroso, Augusto Vesco Raveli and Samuel Marques \nGithub repo: https://github.com/KyleKun/petoshopo',
+                            );
+                          },
+                        ),
+                        new Divider(color: Colors.black, height: 5.0),
+                        new SizedBox(
+                          height: 180.0,
+                        ),
+                        new ListTile(
+                            title: new Text(
+                                '@2019 Petoshopo,\n All Rights Reserved',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 19,
+                                  fontFamily: "Quicksand",
+                                )),
+                            onTap: () => {}),
+                      ],
                     ),
-                    new ListTile(
-                      contentPadding: EdgeInsets.only(left: 55),
-                      title: new Text('Petoshopo', style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)), 
-                      onTap: (){}
-                    ),
-                    SizedBox(height: 20),
-                    new ListTile(
-                      title: new Text('Register Customer', style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)), 
-                      onTap: (){Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => new Signin()));}
-                    ),
-                    new Divider(
-                      color: Colors.black,
-                      height: 5.0),
-                    new ListTile(
-                      title: new Text('About us', style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)), 
-                      onTap: (){
-                showAboutDialog(context: context,
-                applicationIcon: FlutterLogo(),
-                applicationName: 'Petoshopo',
-                applicationVersion: '1.0.0',
-                applicationLegalese: 'Developed by Caio Pedroso, Augusto Vesco Raveli and Samuel Marques \nGithub repo: https://github.com/KyleKun/petoshopo',
-                );
-              },
-                    ),
-                    new Divider(
-                      color: Colors.black,
-                      height: 5.0),
-                     new ListTile(
-                      title: new Text('@2019 Petoshopo,\n All Rights Reserved', style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)), 
-                      onTap: () => {}
-                    ),
-                  ],
-                ),
-              ),
-            )));
+                  ),
+                ))));
   }
 
   Widget dashboard(context) {
@@ -209,10 +234,14 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                           });
                         },
                       ),
-                      Text("PetoShopo", style: TextStyle(
+                      Text(
+                        "PetoShopo",
+                        style: TextStyle(
                           color: Colors.black,
                           fontSize: 19,
-                          fontFamily: "Quicksand",),),
+                          fontFamily: "Quicksand",
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 25),
@@ -220,10 +249,12 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                     child: Container(
                       child: Column(
                         children: <Widget>[
-                          Text("Tosa", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)),
+                          Text("Tosa",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 19,
+                                fontFamily: "Quicksand",
+                              )),
                           SingleChildScrollView(
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -249,10 +280,12 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                             ),
                           ),
                           SizedBox(height: 35),
-                          Text("Vaccinations this week", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontFamily: "Quicksand",)),
+                          Text("Vaccinations this week",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 19,
+                                fontFamily: "Quicksand",
+                              )),
                           SizedBox(height: 10),
                           SingleChildScrollView(
                             child: Card(
@@ -290,5 +323,4 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
       ),
     );
   }
-
 }

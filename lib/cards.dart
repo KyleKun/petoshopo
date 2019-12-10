@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petoshopo/api.dart';
 
 Widget cardBathfront() {
   return Card(
@@ -17,8 +18,8 @@ Widget cardBathfront() {
             Padding(
               child: CircleAvatar(
                 radius: 40,
-                backgroundImage:
-                NetworkImage('http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
+                backgroundImage: NetworkImage(
+                    'http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
               ),
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             ),
@@ -27,15 +28,24 @@ Widget cardBathfront() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Name: ", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: "Quicksand",)),
+                  Text("Name: ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: "Quicksand",
+                      )),
                 ],
               ),
             ),
             IconButton(
-              onPressed: () => {},
+              onPressed: () => {
+                sendSmsReminder({
+                  'name': 'Caio',
+                  'pet': 'Gary',
+                  'date': '98',
+                  'phone': '19999104356'
+                })
+              },
               splashColor: Colors.green,
               icon: Icon(Icons.phone),
             )
@@ -61,20 +71,22 @@ Widget cardBathback() {
             Padding(
               child: CircleAvatar(
                 radius: 40,
-                backgroundImage:
-                NetworkImage('http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
+                backgroundImage: NetworkImage(
+                    'http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
               ),
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             ),
-             Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(8, 0, 80, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                  Text("Breed: ", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: "Quicksand",)),
+                children: <Widget>[
+                  Text("Breed: ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: "Quicksand",
+                      )),
                 ],
               ),
             ),
@@ -105,8 +117,8 @@ Widget cardVaccinefront() {
             Padding(
               child: CircleAvatar(
                 radius: 40,
-                backgroundImage:
-                NetworkImage('http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
+                backgroundImage: NetworkImage(
+                    'http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
               ),
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             ),
@@ -115,10 +127,12 @@ Widget cardVaccinefront() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Name: ", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: "Quicksand",)),
+                  Text("Name: ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: "Quicksand",
+                      )),
                 ],
               ),
             ),
@@ -149,8 +163,8 @@ Widget cardVaccineback() {
             Padding(
               child: CircleAvatar(
                 radius: 40,
-                backgroundImage:
-                NetworkImage('http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
+                backgroundImage: NetworkImage(
+                    'http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg'),
               ),
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             ),
@@ -159,14 +173,16 @@ Widget cardVaccineback() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Breed ", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: "Quicksand",)),
+                  Text("Breed ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: "Quicksand",
+                      )),
                 ],
               ),
             ),
-           IconButton(
+            IconButton(
               onPressed: () => {},
               splashColor: Colors.green,
               icon: Icon(Icons.phone),

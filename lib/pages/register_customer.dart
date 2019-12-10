@@ -11,19 +11,19 @@ class Signin extends StatelessWidget {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height/3.0,
+              height: MediaQuery.of(context).size.height/3.3,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.1,1],
+                  stops: [1,1],
                   colors: [
                     Color(0xFF00C853),
                     Color(0xFF77F745)
                   ],
                 ),
                 borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(90),
+                  bottomRight: Radius.circular(100),
              )
               ),
               child:
@@ -45,7 +45,7 @@ class Signin extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          bottom: 32,
+                          bottom: 22,
                           right: 32,
                           left: 32
                         ),
@@ -65,7 +65,7 @@ class Signin extends StatelessWidget {
               Container(
               height: MediaQuery.of(context).size.height/2,
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(top: 52),
+              padding: EdgeInsets.only(top: 42),
               child: Column(
                 children: <Widget>[
                   Container(

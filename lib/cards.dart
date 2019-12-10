@@ -6,7 +6,7 @@ Widget cardBath() {
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
         side: BorderSide(
-          color: Colors.white,
+          color: Color(0xFF00C853),
           width: 1.0,
         )),
     child: Container(
@@ -46,7 +46,7 @@ Widget cardVaccine() {
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
         side: BorderSide(
-          color: Colors.white,
+          color: Color(0xFF00C853),
           width: 1.0,
         )),
     child: Container(

@@ -29,6 +29,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
   
   Color orangeColor = hexToColor('#FFB056');
   Color greenColor = hexToColor('#69DC9E');
+  Color white = hexToColor('#FCFEFE');
 
   @override
   void initState() {
@@ -64,7 +65,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
         },
         index: 1,
         height: 50,
-        color: greenColor,
+        color: Color(0xFF00C853),
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
         items: <Widget>[
@@ -84,7 +85,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
           )
         ],
       ),
-      backgroundColor: orangeColor,
+      backgroundColor: white,
       body: Stack(
         children: <Widget>[
           menu(context),
@@ -100,7 +101,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
         child: ScaleTransition(
             scale: _menuScaleAnimation,
             child: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
+              padding: const EdgeInsets.only(left: 12.0, top: 15),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Column(
@@ -109,23 +110,26 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      width: 150,
+                      width: 140,
                       height: 125,
-                      margin: EdgeInsets.only(top: 40, bottom: 5),
+                      margin: EdgeInsets.only(top: 40, left: 30),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://lh3.googleusercontent.com/OwFsnOq3a4PKuze_-I-8KWdMtqDHPa0HYXTqj7OMZUK8_Xvsmjq1CmFdQvvgtoqU-rIkHQ=s91'),
+                              'https://i.ibb.co/3sQ0f6b/oie-oie-trim-image.png'),
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    Text("Petoshopo",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 19,
-                            fontFamily: "Quicksand")),
+                    new ListTile(
+                      contentPadding: EdgeInsets.only(left: 55),
+                      title: new Text('Petoshopo', style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontFamily: "Quicksand",)), 
+                      onTap: (){}
+                    ),
                     SizedBox(height: 20),
                     new ListTile(
                       title: new Text('Register Customer', style: TextStyle(
@@ -179,7 +183,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
         child: Material(
           animationDuration: duration,
           elevation: 8,
-          color: greenColor,
+          color: Colors.white,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             physics: ClampingScrollPhysics(),
@@ -225,7 +229,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
-                              color: orangeColor,
+                              color: Color(0xFF00C853),
                               elevation: 2,
                               child: Container(
                                 height: 350,
@@ -236,8 +240,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       //flipOnTouch: false,
-                                      front: cardBath(),
-                                      back: cardBath(),
+                                      front: cardBathfront(),
+                                      back: cardBathback(),
                                     );
                                   },
                                 ),
@@ -249,12 +253,13 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                           color: Colors.black,
                           fontSize: 19,
                           fontFamily: "Quicksand",)),
+                          SizedBox(height: 10),
                           SingleChildScrollView(
                             child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
-                              color: orangeColor,
+                              color: Color(0xFF00C853),
                               elevation: 2,
                               child: Container(
                                 height: 350,
@@ -265,8 +270,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       flipOnTouch: true,
-                                      front: cardVaccine(),
-                                      back: cardVaccine(),
+                                      front: cardVaccinefront(),
+                                      back: cardVaccineback(),
                                     );
                                   },
                                 ),

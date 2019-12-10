@@ -1,29 +1,54 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
-import 'menu_sidebar.dart';
+import 'package:hive/hive.dart';
+import 'package:petoshopo/model/customer.dart';
+import 'package:toast/toast.dart';
 
 
-class Signin extends StatelessWidget {
+//class Signin extends StatelessWidget {
+
+class Signin extends StatefulWidget {
+  @override
+  _SigninState createState() => _SigninState();
+}
+
+class _SigninState extends State<Signin> {
+
+  var namecliente = TextEditingController();
+  var clienteTelephone = TextEditingController();
+  var petName = TextEditingController();
+  var petBread = TextEditingController();
+
+  var myBoxDados = Hive.box("dadosCustomers");
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       body: Container(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height/3.0,
+              height: MediaQuery.of(context).size.height/3.3,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.1,1],
+                  stops: [1,1],
                   colors: [
                     Color(0xFF00C853),
                     Color(0xFF77F745)
                   ],
                 ),
                 borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(90),
+                  bottomRight: Radius.circular(100),
              )
               ),
               child:
@@ -45,7 +70,7 @@ class Signin extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          bottom: 32,
+                          bottom: 22,
                           right: 32,
                           left: 32
                         ),
@@ -63,9 +88,8 @@ class Signin extends StatelessWidget {
             ), 
 
               Container(
-              height: MediaQuery.of(context).size.height/2,
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(top: 52),
+              padding: EdgeInsets.only(top: 42),
               child: Column(
                 children: <Widget>[
                   Container(
@@ -87,6 +111,7 @@ class Signin extends StatelessWidget {
                       ]
                     ),
                     child: TextField(
+                      controller: namecliente,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.person,
@@ -120,6 +145,8 @@ class Signin extends StatelessWidget {
                         ]
                     ),
                     child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: clienteTelephone,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.phone,
@@ -152,6 +179,7 @@ class Signin extends StatelessWidget {
                         ]
                     ),
                     child: TextField(
+                      controller: petName,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.pets,
@@ -185,6 +213,7 @@ class Signin extends StatelessWidget {
                         ]
                     ),
                     child: TextField(
+                      controller: petBread,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.pets,
@@ -200,7 +229,8 @@ class Signin extends StatelessWidget {
                   SizedBox(height: 10),
                   SizedBox(height: 20),
 
-                  Container(
+                  GestureDetector(
+                    child: Container(
                     height: 45,
                     width: MediaQuery.of(context).size.width/1.2,
                     decoration: BoxDecoration(
@@ -223,18 +253,93 @@ class Signin extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Quicksand"
                         ),
-                      ), onPressed: () {Navigator.push( context, new MaterialPageRoute(builder: (context) => MenuDashboardPage(),
-               ),
-             );
-              }
+                      ), onPressed: () {
+                        iniciarProcessoCadastro();
+                      }
               )
             )
            ),
+           onTap: (){
+             //iniciarProcessoCadastro();
+           },
+                  ),
           ],
         ),
       ),
           ]
+        ),
         ))
     );
   }
+
+  void iniciarProcessoCadastro(){
+    String name = namecliente.text;
+    String telephone = clienteTelephone.text;
+    String namePet = petName.text;
+    String breedPet = petBread.text;
+
+    bool verificar = verificarCampos(name, telephone, namePet, breedPet);
+    
+    if(verificar == true){
+      Customer customer = Customer();
+
+      customer.name = name;
+      customer.telephone = telephone;
+      customer.petName = namePet;
+      customer.petBreed = breedPet;
+      customer.maskTelephone = configurarMaskTelephone(telephone);
+
+      myBoxDados.add(customer);
+
+      namecliente.text = "";
+      clienteTelephone.text = "";
+      petName.text = "";
+      petBread.text = "";
+
+    }
+
+    }
+
+    String configurarMaskTelephone(String telephone){
+      String numberMask = "";
+
+      for(int i = 0; i < telephone.length; i++){
+
+        if(i == 0){
+          numberMask = numberMask + "(";
+        }
+
+        numberMask = numberMask + telephone[i];
+
+      }
+      return numberMask;
+    }
+    
+      bool verificarCampos(String name, String telephone, String namePet, String breedPet) {
+
+        if(name.isNotEmpty){
+          if(telephone.isNotEmpty){
+            if(namePet.isNotEmpty){
+              if(breedPet.isNotEmpty){
+                return true;
+              }else{
+                msg("O campo breedPet é obrigatorio");
+              }
+            }else{
+              msg("O campo petName é obrigatorio");
+            }
+          }else{
+            msg("O campo telephone é obrigatorio");
+          }
+        }else{
+          msg("O campo name é obrigatorio");
+        }
+
+        return false;        
+      }
+
+      void msg(String text){
+        Toast.show(text, context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+      }
+
 }

@@ -13,12 +13,7 @@ class _MyHomePageState extends State<ConsultCustomer>
     with SingleTickerProviderStateMixin {
   TextEditingController editingController = TextEditingController();
   TabController controller;
-<<<<<<< HEAD
   List<String> listItems = List();
-=======
-  List<String> listItems = ["Johnny Depp","Al Pacino","Robert De Niro","Kevin Spacey","Denzel Washington","Russell Crowe","SBrad Pitt","Sylvester Stallone"];
-  List<String> imagens = ["https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc5NjV9&auto=format&fit=crop&w=634&q=80","https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80","https://images.unsplash.com/photo-1552944249-481c99e23e97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1566624790190-511a09f6ddbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80","https://images.unsplash.com/photo-1566245856371-d9467fb7aeb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"];
->>>>>>> e7e3f77fc0c8e601e613a968cb934b49408df573
   var items = List<String>();
 
   List<Customer> listCustomers = List();

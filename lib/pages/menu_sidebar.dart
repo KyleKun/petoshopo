@@ -101,7 +101,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
         child: ScaleTransition(
             scale: _menuScaleAnimation,
             child: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
+              padding: const EdgeInsets.only(left: 12.0, top: 15),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Column(
@@ -110,8 +110,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      width: 170,
-                      height: 155,
+                      width: 140,
+                      height: 125,
                       margin: EdgeInsets.only(top: 40, left: 30),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -123,7 +123,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                       ),
                     ),
                     new ListTile(
-                      contentPadding: EdgeInsets.only(left: 65),
+                      contentPadding: EdgeInsets.only(left: 55),
                       title: new Text('Petoshopo', style: TextStyle(
                           color: Colors.black,
                           fontSize: 19,
@@ -240,8 +240,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       //flipOnTouch: false,
-                                      front: cardBath(),
-                                      back: cardBath(),
+                                      front: cardBathfront(),
+                                      back: cardBathback(),
                                     );
                                   },
                                 ),
@@ -253,6 +253,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                           color: Colors.black,
                           fontSize: 19,
                           fontFamily: "Quicksand",)),
+                          SizedBox(height: 10),
                           SingleChildScrollView(
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -269,8 +270,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       flipOnTouch: true,
-                                      front: cardVaccine(),
-                                      back: cardVaccine(),
+                                      front: cardVaccinefront(),
+                                      back: cardVaccineback(),
                                     );
                                   },
                                 ),

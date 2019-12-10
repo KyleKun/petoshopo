@@ -1,19 +1,19 @@
 import 'package:http/http.dart' as http;
 
 Future callCustomer(var customerData) async {
-  http.get(Uri.parse('http://10.0.2.2:5000/call')
+  http.get(Uri.parse('http://kylekun.pythonanywhere.com/call')
       .replace(queryParameters: customerData)
       .toString());
 }
 
 Future sendSmsReminder(var customerData) async {
-  http.get(Uri.parse('http://10.0.2.2:5000/sms')
+  http.get(Uri.parse('http://kylekun.pythonanywhere.com/sms')
                      .replace(queryParameters: customerData)
                      .toString());
 }
 
 Future askFeedback(var customerData) async {
-  http.get(Uri.parse('http://10.0.2.2:5000/feedback')
+  http.get(Uri.parse('http://kylekun.pythonanywhere.com/feedback')
       .replace(queryParameters: customerData)
       .toString());
 }

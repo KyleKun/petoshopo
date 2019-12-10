@@ -56,7 +56,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
       bottomNavigationBar: CurvedNavigationBar(
         onTap: (index){
           if(index == 0){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Consultcustomer()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ConsultCustomer()));
           }
           if(index == 2){
             Navigator.push(context, MaterialPageRoute(builder: (context) => Statistics()));
@@ -71,7 +71,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
            IconButton(
             icon: Icon(Icons.person),
             color: Colors.white,
-            onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) => Consultcustomer()));},
+            onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) => ConsultCustomer()));},
           ),
           Icon(
             Icons.home,

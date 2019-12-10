@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:folding_cell/folding_cell.dart';
 
-class Consultcustomer extends StatefulWidget {
+class ConsultCustomer extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<Consultcustomer>
+class _MyHomePageState extends State<ConsultCustomer>
     with SingleTickerProviderStateMixin {
   TextEditingController editingController = TextEditingController();
   TabController controller;

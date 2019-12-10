@@ -3,6 +3,9 @@ from totalvoice.cliente import Cliente
 
 app = Flask(__name__)
 client = Cliente('83e0121ebf6382715dc151f9376a1bfb', 'api.totalvoice.com.br')
+welcome_message = 'Hello! This API is made for Petoshopo.\n' \
+                  'You can check how to use it at the project repo: ' \
+                  'github.com/KyleKun/petoshopo.'
 
 
 def get_values():
@@ -11,7 +14,7 @@ def get_values():
 
 @app.route('/')
 def start():
-    return 'STARTED'
+    return welcome_message
 
 
 @app.route('/sms')

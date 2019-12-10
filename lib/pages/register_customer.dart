@@ -1,4 +1,4 @@
-import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -19,6 +19,12 @@ class _SigninState extends State<Signin> {
   var clienteTelephone = TextEditingController();
   var petName = TextEditingController();
   var petBread = TextEditingController();
+
+  var urlImagem = "";
+
+  bool fotoPet = true;
+
+  List<String> imagens = ["https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc5NjV9&auto=format&fit=crop&w=634&q=80","https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80","https://images.unsplash.com/photo-1552944249-481c99e23e97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1566624790190-511a09f6ddbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80","https://images.unsplash.com/photo-1566245856371-d9467fb7aeb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"];
 
   var myBoxDados = Hive.box("dadosCustomers");
 
@@ -57,13 +63,55 @@ class _SigninState extends State<Signin> {
                 children: <Widget>[
                   Spacer(),
                   SizedBox(height: 30),
-                  Align(
+                  Visibility(
+                    visible: fotoPet,
+                    child: GestureDetector(
+                      onTap: (){
+                        
+                        setState(() {
+                          var random = Random();
+                          int img = random.nextInt(imagens.length);
+                          urlImagem = imagens[img];
+                          fotoPet = false;
+                        });
+                      },
+                      child: Align(
                     alignment: Alignment.center,
                       child: Icon(Icons.pets,
                       size: 70,
                       color: Colors.white,
                     ),
                   ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: !fotoPet,
+                    child: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          var random = Random();
+                          int img = random.nextInt(imagens.length);
+                          urlImagem = imagens[img];
+                          fotoPet = false;
+                        });
+                      },
+                      onLongPress: (){ 
+                        setState(() {
+                          fotoPet = true;
+                          urlImagem = "";
+                        });
+                      },
+                      child:Align(
+                    alignment: Alignment.center,
+                      child: CircleAvatar(
+                      radius: 42,
+                      backgroundImage: NetworkImage(urlImagem),
+                      ),
+                  )
+                       ,
+                    ),
+                  ),
+                  Text("Click na imagem para adicionar/remover"),
                   Spacer(),
 
                   Align(
@@ -283,11 +331,14 @@ class _SigninState extends State<Signin> {
     if(verificar == true){
       Customer customer = Customer();
 
+      print(configurarMaskTelephone(telephone));
+
       customer.name = name;
       customer.telephone = telephone;
       customer.petName = namePet;
       customer.petBreed = breedPet;
       customer.maskTelephone = configurarMaskTelephone(telephone);
+      customer.urlImage = urlImagem ?? "";
 
       myBoxDados.add(customer);
 
@@ -309,6 +360,14 @@ class _SigninState extends State<Signin> {
           numberMask = numberMask + "(";
         }
 
+        if(i == 2){
+          numberMask = numberMask + ") ";
+        }
+
+        if(i == telephone.length - 4){
+          numberMask = numberMask + "-";
+        }
+
         numberMask = numberMask + telephone[i];
 
       }
@@ -321,7 +380,11 @@ class _SigninState extends State<Signin> {
           if(telephone.isNotEmpty){
             if(namePet.isNotEmpty){
               if(breedPet.isNotEmpty){
-                return true;
+                if(telephone.length == 11){
+                  return true;
+                }else{
+                  msg("Seu numero está incompleto");
+                }
               }else{
                 msg("O campo breedPet é obrigatorio");
               }

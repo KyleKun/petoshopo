@@ -18,18 +18,15 @@ class _MyHomePageState extends State<Consultcustomer>
 
   List<Customer> listCustomers = List();
 
-  void carregarLista(){
-
+  void carregarLista() {
     var myBox = Hive.box("dadosCustomers");
     print(myBox.length);
-    if(myBox.length != 0){
-
-      for(int i = 0; i < myBox.length; i++){
+    if (myBox.length != 0) {
+      for (int i = 0; i < myBox.length; i++) {
         Customer customer = myBox.getAt(i);
         listCustomers.add(customer);
         listItems.add(customer.name);
       }
-
     }
 
     items.addAll(listItems);
@@ -37,7 +34,6 @@ class _MyHomePageState extends State<Consultcustomer>
 
   @override
   void initState() {
-
     carregarLista();
 
     super.initState();
@@ -54,57 +50,51 @@ class _MyHomePageState extends State<Consultcustomer>
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Column(
+      children: <Widget>[
+        Stack(
           children: <Widget>[
-            Stack(
+            header(),
+            Column(
               children: <Widget>[
-                header(),
-                Column(
-                  children: <Widget>[
-                    SizedBox(height: 110.0,),
-                    Padding(
-                      padding: EdgeInsets.only(left: 12.0, right: 12.0),
-                      child: Material(
-                        elevation: 5.0,
-                        borderRadius: BorderRadius.circular(30.0),
-                        child: TextField(
-                            onChanged: (value){
-                              filterSearchResults(value); // passing the getting value
-                              print('vaue :' + value);
-                            },
+                SizedBox(
+                  height: 110.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 12.0, right: 12.0),
+                  child: Material(
+                    elevation: 5.0,
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: TextField(
+                        onChanged: (value) {
+                          filterSearchResults(
+                              value); // passing the getting value
+                          print('vaue :' + value);
+                        },
 //                            controller: editingController, //still I'm  not using
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                prefixIcon: Icon(Icons.search,
-                                    color: Color(0xFF00C853),
-                                    size: 25.0),
-                                contentPadding:
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.search,
+                                color: Color(0xFF00C853), size: 25.0),
+                            contentPadding:
                                 EdgeInsets.only(left: 10.0, top: 12.0),
-                                hintText: 'Search',
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Quicksand')
-                            )
-                        ),
-                      ),
-                    ),
-                  ],
+                            hintText: 'Search',
+                            hintStyle: TextStyle(
+                                color: Colors.grey, fontFamily: 'Quicksand'))),
+                  ),
                 ),
               ],
             ),
-
-            new Expanded(
-                child: new ListView.builder
-                  (
-                    itemCount: items.length, //count the value no in the list
-                    itemBuilder: (BuildContext ctxt, int Index) {
-                      Customer customer = listCustomers[Index];
-                      return _buildCell(context, Index,items[Index], customer);
-                    }
-                )
-            )
           ],
-        )
-    );
+        ),
+        new Expanded(
+            child: new ListView.builder(
+                itemCount: items.length, //count the value no in the list
+                itemBuilder: (BuildContext ctxt, int Index) {
+                  Customer customer = listCustomers[Index];
+                  return _buildCell(context, Index, items[Index], customer);
+                }))
+      ],
+    ));
   }
 
   void filterSearchResults(String query) {
@@ -120,7 +110,6 @@ class _MyHomePageState extends State<Consultcustomer>
       setState(() {
         items.clear();
         items.addAll(dummyListData);
-
       });
       return;
     } else {
@@ -131,76 +120,71 @@ class _MyHomePageState extends State<Consultcustomer>
     }
   } //Now using
 
-  Widget header(){
+  Widget header() {
     return new Container(
         height: 140.0,
         width: MediaQuery.of(context).size.width,
         color: Color(0xFF00C853),
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 60.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('Customers list',
-              style: TextStyle(
-                  fontFamily: 'Quicksand',
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold
-              ),),
-              IconButton(
-                onPressed: () async {
-                  var myBox = Hive.box("dadosCustomers");
-                  int len = myBox.length;
-                  await Navigator.push(context, MaterialPageRoute(builder: (context) => Signin()));
-                  
-                  if(Hive.box("dadosCustomers").length != len){
-                    items.clear();
-                    listItems.clear();
-                    carregarLista();
-                    
-                  }
+                Text(
+                  'Customers list',
+                  style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    var myBox = Hive.box("dadosCustomers");
+                    int len = myBox.length;
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Signin()));
 
-                },
-                icon: Icon(Icons.add_box, color: Colors.white,),
-              )
+                    if (Hive.box("dadosCustomers").length != len) {
+                      items.clear();
+                      listItems.clear();
+                      carregarLista();
+                    }
+                  },
+                  icon: Icon(
+                    Icons.add_box,
+                    color: Colors.white,
+                  ),
+                )
               ],
             ),
           ],
-        )
-    );
+        ));
   }
 
-  Widget _buildCell(BuildContext context, int index, String name, Customer customer) { // same as previous video
+  Widget _buildCell(
+      BuildContext context, int index, String name, Customer customer) {
+    // same as previous video
     return Padding(
-      padding: EdgeInsets.only(left: 12.0,top: 5.0, right: 12.0),
+      padding: EdgeInsets.only(left: 12.0, top: 5.0, right: 12.0),
       child: Material(
         color: Color(0xFF00C853),
         elevation: 5.0,
         borderRadius: BorderRadius.circular(10.0),
         child: SimpleFoldingCell(
-          frontWidget:
-          Container(
+          frontWidget: Container(
             color: Color(0xFF00C853),
             alignment: Alignment.center,
             child: Row(
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(5.0),
-                  width: MediaQuery.of(context).size.width / 6, //full width get the 6 part
+                  width: MediaQuery.of(context).size.width /
+                      6, //full width get the 6 part
                   height: MediaQuery.of(context).size.width / 6,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35.0),
-                      border: Border.all(
-                          color: Colors.white,
-                          style: BorderStyle.solid,
-                          width: 2.0),
-                      image: DecorationImage(
-                          image: AssetImage('assets/download.png')
-                      )
-                  ),
+                  child: carregarImage(customer.urlImage),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 20.0, top: 5.0),
@@ -211,35 +195,38 @@ class _MyHomePageState extends State<Consultcustomer>
                     children: <Widget>[
                       Text(
                         name,
-                        style: TextStyle(fontFamily: 'Quicksand',
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
                             fontSize: 16.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Phone number: ${customer.telephone}',
+                        'Phone number: ${customer.maskTelephone}',
                         textAlign: TextAlign.left,
-                        style: TextStyle(fontFamily: 'Quicksand',
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
                             fontSize: 12.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-
-                          Text(
-                            'Pet name: ${customer.petName}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontFamily: 'Quicksand',
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Pet breed: ${customer.petBreed}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontFamily: 'Quicksand',
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                      Text(
+                        'Pet name: ${customer.petName}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 12.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Pet breed: ${customer.petBreed}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 12.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -247,8 +234,7 @@ class _MyHomePageState extends State<Consultcustomer>
               ],
             ),
           ),
-          innerTopWidget:
-          Container(
+          innerTopWidget: Container(
             color: Color(0xFF77F745),
             alignment: Alignment.center,
             child: Row(
@@ -264,9 +250,7 @@ class _MyHomePageState extends State<Consultcustomer>
                           style: BorderStyle.solid,
                           width: 2.0),
                       image: DecorationImage(
-                          image: AssetImage('assets/download.png')
-                      )
-                  ),
+                          image: NetworkImage(customer.urlImage))),
                 ),
               ],
             ),
@@ -276,18 +260,25 @@ class _MyHomePageState extends State<Consultcustomer>
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.only(bottom: 0),
-              child: FlatButton(onPressed: () {
-                final snackBar = SnackBar(content: Text('Item $index clicked', ),
-                  duration: Duration(milliseconds: 500),);
-                Scaffold.of(context).showSnackBar(snackBar);
-              },
+              child: FlatButton(
+                onPressed: () {
+                  final snackBar = SnackBar(
+                    content: Text(
+                      'Item $index clicked',
+                    ),
+                    duration: Duration(milliseconds: 500),
+                  );
+                  Scaffold.of(context).showSnackBar(snackBar);
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      name+' is an American actor of screen and stage, film director, producer, screenwriter and singer. He began his career as a stage actor during the 1980s before obtaining supporting roles in film and television',
+                      name +
+                          ' is an American actor of screen and stage, film director, producer, screenwriter and singer. He began his career as a stage actor during the 1980s before obtaining supporting roles in film and television',
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontFamily: 'Quicksand',
+                      style: TextStyle(
+                          fontFamily: 'Quicksand',
                           fontSize: 12.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
@@ -305,5 +296,20 @@ class _MyHomePageState extends State<Consultcustomer>
         ),
       ),
     );
+  }
+
+  Widget carregarImage(String urlImage) {
+    if (urlImage != "" && urlImage != null) {
+      return CircleAvatar(
+        backgroundImage: NetworkImage(urlImage),
+        radius: 50,
+      );
+    } else {
+      return Icon(
+        Icons.pets,
+        size: 50,
+        color: Colors.white,
+      );
+    }
   }
 }

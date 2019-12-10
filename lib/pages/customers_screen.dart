@@ -188,14 +188,7 @@ class _MyHomePageState extends State<ConsultCustomer>
                   width: MediaQuery.of(context).size.width /
                       6, //full width get the 6 part
                   height: MediaQuery.of(context).size.width / 6,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35.0),
-                      border: Border.all(
-                          color: Colors.white,
-                          style: BorderStyle.solid,
-                          width: 2.0),
-                      image: DecorationImage(
-                          image: AssetImage('assets/download.png'))),
+                  child: carregarImage(customer.urlImage),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 20.0, top: 5.0),
@@ -213,7 +206,7 @@ class _MyHomePageState extends State<ConsultCustomer>
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Phone number: ${customer.telephone}',
+                        'Phone number: ${customer.maskTelephone}',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             fontFamily: 'Quicksand',
@@ -261,7 +254,7 @@ class _MyHomePageState extends State<ConsultCustomer>
                           style: BorderStyle.solid,
                           width: 2.0),
                       image: DecorationImage(
-                          image: AssetImage('assets/download.png'))),
+                          image: NetworkImage(customer.urlImage))),
                 ),
               ],
             ),
@@ -307,5 +300,20 @@ class _MyHomePageState extends State<ConsultCustomer>
         ),
       ),
     );
+  }
+
+  Widget carregarImage(String urlImage) {
+    if (urlImage != "" && urlImage != null) {
+      return CircleAvatar(
+        backgroundImage: NetworkImage(urlImage),
+        radius: 50,
+      );
+    } else {
+      return Icon(
+        Icons.pets,
+        size: 50,
+        color: Colors.white,
+      );
+    }
   }
 }

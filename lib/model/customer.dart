@@ -5,6 +5,13 @@ class Customer{
   String _petName;
   String _petBreed;
   String _maskTelephone;
+  String _urlImage;
+
+  String get urlImage => _urlImage;
+
+  set urlImage(String urlImage) {
+    _urlImage = urlImage;
+  }
 
   String get maskTelephone => _maskTelephone;
 

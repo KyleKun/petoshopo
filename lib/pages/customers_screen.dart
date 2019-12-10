@@ -140,16 +140,12 @@ class _MyHomePageState extends State<ConsultCustomer>
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold),
                 ),
-                new SizedBox(width: 100.0,),
                 IconButton(
-                  iconSize: 30.0,
                   onPressed: () async {
                     var myBox = Hive.box("dadosCustomers");
                     int len = myBox.length;
-                    await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterCustomer()));
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ConsultCustomer()));
 
                     if (Hive.box("dadosCustomers").length != len) {
                       items.clear();

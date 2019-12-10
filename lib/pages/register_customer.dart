@@ -63,7 +63,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                     visible: fotoPet,
                     child: GestureDetector(
                       onTap: (){
-
+                        
                         setState(() {
                           var random = Random();
                           int img = random.nextInt(imagens.length);
@@ -91,7 +91,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           fotoPet = false;
                         });
                       },
-                      onLongPress: (){
+                      onLongPress: (){ 
                         setState(() {
                           fotoPet = true;
                           urlImagem = "";

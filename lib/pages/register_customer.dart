@@ -17,6 +17,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   var petBread = TextEditingController();
 
   String dataSelecionada = "Dia/Mês/Ano";
+  var dataPrincipal = null;
 
   var urlImagem = "";
 
@@ -273,8 +274,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                PublicarCalendario(null)));
-
+                                PublicarCalendario(dataPrincipal)));                               
+                        dataPrincipal = data;
                         setState(() {
                           dataSelecionada = "${data.day}/${data.month}/${data.year}";
                         });        
@@ -337,6 +338,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       customer.petBreed = breedPet;
       customer.maskTelephone = configurarMaskTelephone(telephone);
       customer.urlImage = urlImagem ?? "";
+      
       
       myBoxDados.add(customer);
 

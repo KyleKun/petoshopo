@@ -6,12 +6,19 @@ class Customer{
   String _petBreed;
   String _maskTelephone;
   String _urlImage;
-  String _dataUltimaVacina;
+  String _dataUltimaVacinaCalendario;
+  DateTime _dataUltimaVacina;
 
-  String get dataUltimaVacina => _dataUltimaVacina;
+  DateTime get dataUltimaVacina => _dataUltimaVacina;
 
-  set dataUltimaVacina(String dataUltimaVacina) {
+  set dataUltimaVacina(DateTime dataUltimaVacina) {
     _dataUltimaVacina = dataUltimaVacina;
+  }
+
+  String get dataUltimaVacinaCalendario => _dataUltimaVacinaCalendario;
+
+  set dataUltimaVacinaCalendario(String dataUltimaVacinaCalendario) {
+    _dataUltimaVacinaCalendario = dataUltimaVacinaCalendario;
   }
 
   String get urlImage => _urlImage;

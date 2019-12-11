@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:petoshopo/model/customer.dart';
@@ -29,7 +28,11 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
     "https://images.unsplash.com/photo-1552944249-481c99e23e97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     "https://images.unsplash.com/photo-1566624790190-511a09f6ddbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    "https://images.unsplash.com/photo-1566245856371-d9467fb7aeb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
+    "https://images.unsplash.com/photo-1566245856371-d9467fb7aeb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
+    "http://data.biovet.com.br/file/2018/10/29/H104520-F00000-V006-2000x0.jpeg",
+    "https://images.unsplash.com/photo-1573433618812-f612e727b7d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "https://images.unsplash.com/photo-1569031089355-8273719dcf2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+    "https://images.unsplash.com/photo-1569576231685-8a0bb772d2f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
   ];
 
 
@@ -377,6 +380,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
         if (namePet.isNotEmpty) {
           if (breedPet.isNotEmpty) {
             if (telephone.length == 11) {
+              msg("Customer Saved!");
               return true;
             } else {
               msg("Phone number incomplete!");

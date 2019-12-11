@@ -172,6 +172,13 @@ class _MyHomePageState extends State<ConsultCustomer>
     // same as previous video
     Customer customer = listCustomers[index];
 
+    var vaccine = customer.dataUltimaVacinaCalendario;
+    bool visibleVaccine = false;
+
+    if(vaccine.isNotEmpty){
+      visibleVaccine = true;
+    }
+
     return Padding(
       padding: EdgeInsets.only(left: 12.0, top: 5.0, right: 12.0),
       child: Material(
@@ -233,6 +240,18 @@ class _MyHomePageState extends State<ConsultCustomer>
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
+                      Visibility(
+                        visible: visibleVaccine,
+                        child: Text(
+                        'Vaccine: ${customer.dataUltimaVacinaCalendario}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 12.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      )
                     ],
                   ),
                 ),

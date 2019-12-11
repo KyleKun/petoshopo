@@ -339,9 +339,12 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       customer.maskTelephone = configurarMaskTelephone(telephone);
       customer.urlImage = urlImagem ?? "";
       customer.dataUltimaVacinaCalendario = dataSelecionada ?? "";
-      customer.dataUltimaVacina = dataPrincipal ?? "";
       
       
+      if(myBoxDados.length == 0){
+        myBoxDados.add(customer);
+      }
+
       myBoxDados.add(customer);
 
       namecliente.text = "";

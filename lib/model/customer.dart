@@ -7,13 +7,6 @@ class Customer{
   String _maskTelephone;
   String _urlImage;
   String _dataUltimaVacinaCalendario;
-  DateTime _dataUltimaVacina;
-
-  DateTime get dataUltimaVacina => _dataUltimaVacina;
-
-  set dataUltimaVacina(DateTime dataUltimaVacina) {
-    _dataUltimaVacina = dataUltimaVacina;
-  }
 
   String get dataUltimaVacinaCalendario => _dataUltimaVacinaCalendario;
 

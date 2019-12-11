@@ -79,15 +79,15 @@ class _PublicarCalendarioState extends State<PublicarCalendario> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.arrow_back),
-            title: Text("Voltar")
+            title: Text("Back")
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cancel),
-            title: Text("Remover Data")
+            title: Text("Remove date")
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.done),
-            title: Text("Confirmar data")
+            title: Text("Confirm date")
           )
          
         ],

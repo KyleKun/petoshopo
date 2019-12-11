@@ -16,7 +16,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   var petName = TextEditingController();
   var petBread = TextEditingController();
 
-  String dataSelecionada = "Dia/Mês/Ano";
+  String dataSelecionada = "Add pet's last vaccine";
 
   var urlImagem = "";
 
@@ -265,7 +265,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           dataSelecionada,
                           style: TextStyle(
                               color: Colors.grey,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               fontFamily: "Quicksand"),
                         ),
                         onPressed: () async {

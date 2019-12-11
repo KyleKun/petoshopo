@@ -6,6 +6,13 @@ class Customer{
   String _petBreed;
   String _maskTelephone;
   String _urlImage;
+  String _dataUltimaVacina;
+
+  String get dataUltimaVacina => _dataUltimaVacina;
+
+  set dataUltimaVacina(String dataUltimaVacina) {
+    _dataUltimaVacina = dataUltimaVacina;
+  }
 
   String get urlImage => _urlImage;
 

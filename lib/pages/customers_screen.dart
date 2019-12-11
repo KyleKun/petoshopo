@@ -18,7 +18,7 @@ class _MyHomePageState extends State<ConsultCustomer>
 
   List<Customer> listCustomers = List();
 
-  void carregarLista() {
+  void carregarLista()  {
     var myBox = Hive.box("dadosCustomers");
     print(myBox.length);
     if (myBox.length != 0) {
@@ -28,8 +28,7 @@ class _MyHomePageState extends State<ConsultCustomer>
         listItems.add(customer.name);
       }
     }
-
-    items.addAll(listItems);
+     items.addAll(listItems);
   }
 
   @override
@@ -87,11 +86,11 @@ class _MyHomePageState extends State<ConsultCustomer>
           ],
         ),
         new Expanded(
-            child: new ListView.builder(
+            child: ListView.builder(
                 itemCount: items.length, //count the value no in the list
                 itemBuilder: (BuildContext ctxt, int Index) {
-                  Customer customer = listCustomers[Index];
-                  return _buildCell(context, Index, items[Index], customer);
+                  
+                  return _buildCell(context, Index, items[Index]);
                 }))
       ],
     ));
@@ -152,7 +151,9 @@ class _MyHomePageState extends State<ConsultCustomer>
                     if (Hive.box("dadosCustomers").length != len) {
                       items.clear();
                       listItems.clear();
+                      listCustomers.clear();
                       carregarLista();
+                      print("executei");
                     }
                   },
                   icon: Icon(
@@ -167,8 +168,10 @@ class _MyHomePageState extends State<ConsultCustomer>
   }
 
   Widget _buildCell(
-      BuildContext context, int index, String name, Customer customer) {
+      BuildContext context, int index, String name) {
     // same as previous video
+    Customer customer = listCustomers[index];
+
     return Padding(
       padding: EdgeInsets.only(left: 12.0, top: 5.0, right: 12.0),
       child: Material(

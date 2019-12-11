@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:petoshopo/model/customer.dart';
+import 'package:petoshopo/telaCalendario.dart';
 import 'package:toast/toast.dart';
 
 class RegisterCustomer extends StatefulWidget {
@@ -15,6 +16,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   var clienteTelephone = TextEditingController();
   var petName = TextEditingController();
   var petBread = TextEditingController();
+
+  String dataSelecionada = "Dia/Mês/Ano";
 
   var urlImagem = "";
 
@@ -29,7 +32,6 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
     "https://images.unsplash.com/photo-1566245856371-d9467fb7aeb8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
   ];
 
-  var myBoxDados = Hive.box("dadosCustomers");
 
   @override
   void initState() {
@@ -243,6 +245,38 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                   ),
                 ),
               ),
+              Container(
+                width: MediaQuery.of(context).size.width / 1.2,
+                height: 45,
+                margin: EdgeInsets.only(top: 12),
+                padding:
+                    EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 4),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(color: Colors.black12, blurRadius: 5)
+                    ]),
+                child: FlatButton(
+                        child: Text(
+                          dataSelecionada,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Quicksand"),
+                        ),
+                        onPressed: () async {
+                          var data = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PublicarCalendario(null)));
+
+                        setState(() {
+                          dataSelecionada = "${data.day}/${data.month}/${data.year}";
+                        });        
+                        }),
+              ),
               SizedBox(height: 10),
               SizedBox(height: 20),
               GestureDetector(
@@ -277,13 +311,17 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
     )));
   }
 
-  void iniciarProcessoCadastro() {
+  void iniciarProcessoCadastro() async {
     String name = namecliente.text;
     String telephone = clienteTelephone.text;
     String namePet = petName.text;
     String breedPet = petBread.text;
 
     bool verificar = verificarCampos(name, telephone, namePet, breedPet);
+
+    await Hive.openBox("dadosCustomers");
+
+    var myBoxDados =  Hive.box("dadosCustomers");
 
     if (verificar == true) {
       Customer customer = Customer();
@@ -296,13 +334,18 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       customer.petBreed = breedPet;
       customer.maskTelephone = configurarMaskTelephone(telephone);
       customer.urlImage = urlImagem ?? "";
-
+      
       myBoxDados.add(customer);
 
       namecliente.text = "";
       clienteTelephone.text = "";
       petName.text = "";
       petBread.text = "";
+
+      setState(() {
+        fotoPet = true;
+      });
+
     }
   }
 

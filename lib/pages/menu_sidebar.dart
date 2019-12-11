@@ -246,7 +246,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                     child: Container(
                       child: Column(
                         children: <Widget>[
-                          Text("Tosa",
+                          Text("Today's Grooming",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 19,
@@ -268,7 +268,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       //flipOnTouch: false,
-                                      front: cardBathfront(),
+                                      front: cardBathfront(context),
                                       back: cardBathback(),
                                     );
                                   },
@@ -300,7 +300,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                                   itemBuilder: (context, index) {
                                     return FlipCard(
                                       flipOnTouch: true,
-                                      front: cardVaccinefront(),
+                                      front: cardVaccinefront(context),
                                       back: cardVaccineback(),
                                     );
                                   },

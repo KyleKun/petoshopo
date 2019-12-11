@@ -16,8 +16,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   var petName = TextEditingController();
   var petBread = TextEditingController();
 
-  String dataSelecionada = "Dia/Mês/Ano";
   var dataPrincipal = null;
+  String dataSelecionada = "Add pet's last vaccine";
 
   var urlImagem = "";
 
@@ -266,7 +266,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           dataSelecionada,
                           style: TextStyle(
                               color: Colors.grey,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               fontFamily: "Quicksand"),
                         ),
                         onPressed: () async {
@@ -338,6 +338,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       customer.petBreed = breedPet;
       customer.maskTelephone = configurarMaskTelephone(telephone);
       customer.urlImage = urlImagem ?? "";
+      customer.dataUltimaVacinaCalendario = dataSelecionada ?? "";
+      customer.dataUltimaVacina = dataPrincipal ?? "";
       
       
       myBoxDados.add(customer);

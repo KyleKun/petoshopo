@@ -89,7 +89,7 @@ class _MyHomePageState extends State<ConsultCustomer>
             child: ListView.builder(
                 itemCount: items.length, //count the value no in the list
                 itemBuilder: (BuildContext ctxt, int Index) {
-                  
+
                   return _buildCell(context, Index, items[Index]);
                 }))
       ],
@@ -131,14 +131,16 @@ class _MyHomePageState extends State<ConsultCustomer>
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                SizedBox(width: 80.0),
                 Text(
-                  'Customers list',
+                  'Customers',
                   style: TextStyle(
                       fontFamily: 'Quicksand',
                       color: Colors.white,
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold),
                 ),
+                SizedBox(width: 40.0),
                 IconButton(
                   onPressed: () async {
                     var myBox = Hive.box("dadosCustomers");
@@ -159,6 +161,7 @@ class _MyHomePageState extends State<ConsultCustomer>
                   icon: Icon(
                     Icons.add_box,
                     color: Colors.white,
+                    size: 35.0,
                   ),
                 )
               ],

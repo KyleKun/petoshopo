@@ -3,7 +3,6 @@ import 'package:petoshopo/api.dart';
 import 'dart:math';
 import 'package:toast/toast.dart';
 
-
 class GeneratePetName {
   static Random _random = new Random();
 
@@ -102,6 +101,7 @@ Widget cardBathfront(BuildContext context) {
     Toast.show(text, context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   }
+
   return Card(
     elevation: 2,
     shape: RoundedRectangleBorder(
@@ -127,12 +127,14 @@ Widget cardBathfront(BuildContext context) {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(myPet.petName(),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                        fontFamily: "Quicksand",
-                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Text(myPet.petName(),
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontFamily: "Quicksand",
+                          ))),
                 ],
               ),
             ),
@@ -172,7 +174,7 @@ Widget cardBathback() {
                       child: Text("Owner: " + myPet.petOwner(),
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 18,
                             fontFamily: "Quicksand",
                           ))),
                 ],
@@ -190,6 +192,7 @@ Widget cardVaccinefront(BuildContext context) {
     Toast.show(text, context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   }
+
   return Card(
     elevation: 2,
     shape: RoundedRectangleBorder(
@@ -215,19 +218,21 @@ Widget cardVaccinefront(BuildContext context) {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(namePet,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                        fontFamily: "Quicksand",
-                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: 18.0),
+                      child: Text(namePet,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontFamily: "Quicksand",
+                          ))),
                 ],
               ),
             ),
             IconButton(
               onPressed: () => {
                 sendSmsReminder({
-                  'name': 'John',
+                  'name': 'Kyle',
                   'pet': namePet,
                   'date': '2019/12/12',
                   'phone': '19999104356'
@@ -240,7 +245,6 @@ Widget cardVaccinefront(BuildContext context) {
           ],
         )),
   );
-
 }
 
 Widget cardVaccineback() {
@@ -267,7 +271,7 @@ Widget cardVaccineback() {
                       child: Text("Owner: " + myPet.petOwner(),
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 18,
                             fontFamily: "Quicksand",
                           ))),
                 ],

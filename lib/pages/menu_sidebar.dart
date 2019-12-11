@@ -232,10 +232,10 @@ class _MenuDashboardPageState extends State<MenuDashboardPage>
                         },
                       ),
                       Text(
-                        "PetoShopo",
+                        "Petoshopo",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 19,
+                          fontSize: 20,
                           fontFamily: "Quicksand",
                         ),
                       ),

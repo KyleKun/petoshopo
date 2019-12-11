@@ -125,7 +125,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                   padding:
                       const EdgeInsets.only(bottom: 10, right: 32, left: 32),
                   child: Text(
-                    'Add customer',
+                    'New customer',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 26,

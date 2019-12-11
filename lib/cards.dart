@@ -185,6 +185,7 @@ Widget cardBathback() {
 
 @override
 Widget cardVaccinefront(BuildContext context) {
+  String namePet = myPet.petName();
   void msg(String text) {
     Toast.show(text, context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
@@ -214,7 +215,7 @@ Widget cardVaccinefront(BuildContext context) {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(myPet.petName(),
+                  Text(namePet,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15,
@@ -226,9 +227,9 @@ Widget cardVaccinefront(BuildContext context) {
             IconButton(
               onPressed: () => {
                 sendSmsReminder({
-                  'name': 'Caio',
-                  'pet': 'Gary',
-                  'date': '98',
+                  'name': 'John',
+                  'pet': namePet,
+                  'date': '2019/12/12',
                   'phone': '19999104356'
                 }),
                 msg('SMS Reminder Sent!')

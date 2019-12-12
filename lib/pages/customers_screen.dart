@@ -18,7 +18,7 @@ class _MyHomePageState extends State<ConsultCustomer>
 
   List<Customer> listCustomers = List();
 
-  void carregarLista()  {
+  void carregarLista() {
     var myBox = Hive.box("dadosCustomers");
     print(myBox.length);
     if (myBox.length != 0) {
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<ConsultCustomer>
         listItems.add(customer.name);
       }
     }
-     items.addAll(listItems);
+    items.addAll(listItems);
   }
 
   @override
@@ -89,7 +89,6 @@ class _MyHomePageState extends State<ConsultCustomer>
             child: ListView.builder(
                 itemCount: items.length, //count the value no in the list
                 itemBuilder: (BuildContext ctxt, int Index) {
-
                   return _buildCell(context, Index, items[Index]);
                 }))
       ],
@@ -170,15 +169,14 @@ class _MyHomePageState extends State<ConsultCustomer>
         ));
   }
 
-  Widget _buildCell(
-      BuildContext context, int index, String name) {
+  Widget _buildCell(BuildContext context, int index, String name) {
     // same as previous video
     Customer customer = listCustomers[index];
 
     var vaccine = customer.dataUltimaVacinaCalendario;
     bool visibleVaccine = false;
 
-    if(vaccine.isNotEmpty){
+    if (vaccine.isNotEmpty) {
       visibleVaccine = true;
     }
 
@@ -246,14 +244,14 @@ class _MyHomePageState extends State<ConsultCustomer>
                       Visibility(
                         visible: visibleVaccine,
                         child: Text(
-                        'Vaccine: ${customer.dataUltimaVacinaCalendario}',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontSize: 12.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
+                          'Vaccine: ${customer.dataUltimaVacinaCalendario}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 12.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                       )
                     ],
                   ),

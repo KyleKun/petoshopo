@@ -1,5 +1,4 @@
-class Customer{
-
+class Customer {
   String _name;
   String _telephone;
   String _petName;
@@ -49,7 +48,4 @@ class Customer{
   set name(String name) {
     _name = name;
   }
-
-
-
 }

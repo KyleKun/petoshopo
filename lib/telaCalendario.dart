@@ -3,7 +3,6 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
 class PublicarCalendario extends StatefulWidget {
-
   DateTime data;
 
   PublicarCalendario(this.data);
@@ -13,7 +12,6 @@ class PublicarCalendario extends StatefulWidget {
 }
 
 class _PublicarCalendarioState extends State<PublicarCalendario> {
-
   var _currentDate;
   int _bottomBar = 2;
 
@@ -21,10 +19,9 @@ class _PublicarCalendarioState extends State<PublicarCalendario> {
   void initState() {
     super.initState();
 
-    if(widget.data != null){
+    if (widget.data != null) {
       _currentDate = widget.data;
     }
-
   }
 
   @override
@@ -33,9 +30,8 @@ class _PublicarCalendarioState extends State<PublicarCalendario> {
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.0),
         child: CalendarCarousel<Event>(
-          
           onDayPressed: (DateTime date, List<Event> events) {
-            this.setState(() => _currentDate =  date);
+            this.setState(() => _currentDate = date);
           },
           weekendTextStyle: TextStyle(
             color: Colors.red,
@@ -51,9 +47,7 @@ class _PublicarCalendarioState extends State<PublicarCalendario> {
             bool isNextMonthDay,
             bool isThisMonthDay,
             DateTime day,
-          ) {
-           
-          },
+          ) {},
           weekFormat: false,
           height: 420.0,
           daysHaveCircularBorder: false,
@@ -62,34 +56,26 @@ class _PublicarCalendarioState extends State<PublicarCalendario> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomBar,
-        onTap: (indice){
-          if(indice == 0){
+        onTap: (indice) {
+          if (indice == 0) {
             Navigator.pop(context);
-          }else if(indice == 2){
+          } else if (indice == 2) {
             Navigator.pop(context, _currentDate);
-          }else if(indice == 1){
+          } else if (indice == 1) {
             Navigator.pop(context, true);
           }
 
           setState(() {
             _bottomBar = indice;
           });
-
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_back),
-            title: Text("Back")
-          ),
+              icon: Icon(Icons.arrow_back), title: Text("Back")),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cancel),
-            title: Text("Remove date")
-          ),
+              icon: Icon(Icons.cancel), title: Text("Remove date")),
           BottomNavigationBarItem(
-            icon: Icon(Icons.done),
-            title: Text("Confirm date")
-          )
-         
+              icon: Icon(Icons.done), title: Text("Confirm date"))
         ],
       ),
     );

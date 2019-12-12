@@ -97,6 +97,11 @@ GeneratePetName myPet = new GeneratePetName();
 
 @override
 Widget cardBathfront(BuildContext context) {
+  String namePet = myPet.petName();
+  String nameCustomer = '';
+  String phoneNumber = '';
+  String vaccineDate = '';
+
   void msg(String text) {
     Toast.show(text, context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
@@ -140,6 +145,12 @@ Widget cardBathfront(BuildContext context) {
             ),
             IconButton(
               onPressed: () => {
+                callCustomer({
+                  'name': nameCustomer,
+                  'pet': namePet,
+                  'date': vaccineDate,
+                  'phone': phoneNumber,
+                }),
                 msg('Automated Call Started!'),
               },
               splashColor: Colors.green,
@@ -188,6 +199,11 @@ Widget cardBathback() {
 @override
 Widget cardVaccinefront(BuildContext context) {
   String namePet = myPet.petName();
+
+  String nameCustomer = '';
+  String phoneNumber = '';
+  String vaccineDate = '';
+
   void msg(String text) {
     Toast.show(text, context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
@@ -232,10 +248,10 @@ Widget cardVaccinefront(BuildContext context) {
             IconButton(
               onPressed: () => {
                 sendSmsReminder({
-                  'name': 'Kyle',
+                  'name': nameCustomer,
                   'pet': namePet,
-                  'date': '2019/12/12',
-                  'phone': '19999104356'
+                  'date': vaccineDate,
+                  'phone': phoneNumber,
                 }),
                 msg('SMS Reminder Sent!')
               },

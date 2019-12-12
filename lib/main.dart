@@ -13,6 +13,9 @@ void main() async {
 class Petoshopo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(home: MenuDashboardPage(), debugShowCheckedModeBanner: false,);
+    return new MaterialApp(
+      home: MenuDashboardPage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

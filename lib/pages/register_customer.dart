@@ -36,7 +36,6 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
     "https://images.unsplash.com/photo-1569576231685-8a0bb772d2f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
   ];
 
-
   @override
   void initState() {
     super.initState();
@@ -262,24 +261,25 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                       BoxShadow(color: Colors.black12, blurRadius: 5)
                     ]),
                 child: FlatButton(
-                        child: Text(
-                          dataSelecionada,
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Quicksand"),
-                        ),
-                        onPressed: () async {
-                          var data = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                PublicarCalendario(dataPrincipal)));                               
-                        dataPrincipal = data;
-                        setState(() {
-                          dataSelecionada = "${data.day}/${data.month}/${data.year}";
-                        });        
-                        }),
+                    child: Text(
+                      dataSelecionada,
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Quicksand"),
+                    ),
+                    onPressed: () async {
+                      var data = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  PublicarCalendario(dataPrincipal)));
+                      dataPrincipal = data;
+                      setState(() {
+                        dataSelecionada =
+                            "${data.day}/${data.month}/${data.year}";
+                      });
+                    }),
               ),
               SizedBox(height: 10),
               SizedBox(height: 20),
@@ -325,7 +325,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
 
     await Hive.openBox("dadosCustomers");
 
-    var myBoxDados =  Hive.box("dadosCustomers");
+    var myBoxDados = Hive.box("dadosCustomers");
 
     if (verificar == true) {
       Customer customer = Customer();
@@ -339,9 +339,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       customer.maskTelephone = configurarMaskTelephone(telephone);
       customer.urlImage = urlImagem ?? "";
       customer.dataUltimaVacinaCalendario = dataSelecionada ?? "";
-      
-      
-      if(myBoxDados.length == 0){
+
+      if (myBoxDados.length == 0) {
         myBoxDados.add(customer);
       }
 
@@ -355,7 +354,6 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
       setState(() {
         fotoPet = true;
       });
-
     }
   }
 

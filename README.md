@@ -1,16 +1,34 @@
 # petoshopo
 
-A new Flutter application.
+SMS Feedback & Analytics for pet shops.
+
+## About
+
+Available at product hunt: 
+- [Petoshopo: by Augusto Raveli, Samuel Marques and Caio Pedroso]()
+
+This project was made for a Brazilian Hackathon promoted by Totalvoice.
+The challenge was to use their API to explore new ways to integrate their services such as
+SMS and Calls in a potential solution that would solve some market issue related to communication.
+
+We developed a Flutter app with Flare animations, Flask API integration that was deployed with
+pythonanywhere (thanks Conrad for setting the API on their service's whitelist), Hive for local
+data saving, Syncfusion charts, and some free images from sources as Unsplash. 
+
+My huge thanks to all the creators of resources that we used in our app, such as:
+
+- [Logo: made by S.A. Sadik](https://rive.app/a/sadik5397/files/flare/cat-washing-machine-loading/preview)
+- [Stats Animation: made by Ricardo Markiewicz](https://github.com/Gazer/como-gasto)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A few steps to get you started testing our app:
 
-A few resources to get you started if this is your first Flutter project:
+- [Python: Flask](https://flutter.dev/docs/get-started/codelab)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You will need to create an account at TotalVoice's page, and deploy locally your api
+(which can be found in our code on the file app.py) using your TotalVoice API Key generated.
+
+After that, you will be able to call and send SMS using Petoshopo, passing your phone number
+registered at TotalVoice's website as parameters to the Python API.
